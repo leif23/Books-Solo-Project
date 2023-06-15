@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+    <title>Details </title>
+</head>
+<body>
+    
+    <div class="conatainer-fluid text-center">
+
+        <div class=" d-flex align-items-center border-bottom border-secondary">
+            <div class="flex-fill ">
+                <h1><a href="/books" class="text-decoration-none text-dark" none;" >Welcome</a> {{nickNames.first_name}} {{nickNames.last_name}}</h1>
+            </div>
+            <div class="flex-fill">
+                <a href="/logOut"> Log Off</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                <div  class="d-flex bd-highlight">  
+                    <div class="p-2 flex-fill bd-highlight">
+                        <h1>{{view.title}}</h1>
+                        <span> Added on: {{view.created_at.strftime("%d %B, %Y")}}</span>
+                        <p>Last Update on: {{view.created_at.strftime("%d %B, %Y")}}</p> 
+                        <p>Description: {{view.description}}</p>
+                        
+                    </div>
+                    <div class="p-2 flex-fill bd-highlight">
+
+                        <form action="/favorites" method="post">
+                            <div>
+                                <input type="hidden" name="user_id" value={{session['creator_id'] }}>
+                                <input type="hidden" name="book_id" value={{view.id}}>
+                            </div>
+                            <button type="submit">Add Favorite</button>
+                        </form>
+                        
+                    </div>
+                
+                </div>
+                
+
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
